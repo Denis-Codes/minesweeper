@@ -1,29 +1,70 @@
 body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
     text-align: center;
-    background-color: rgb(206, 202, 202);
-    color: rgb(32, 31, 31)
+    background-color: rgb(207, 201, 201);
+    color: rgb(32, 31, 31);
+    margin: 100px auto;
 }
 
 footer {
     font-size: 1em;
+    opacity: 30%;
+    font-weight: bold
 }
 
 
 .board {
     margin: auto;
-    border: solid darkslategrey;
-    width: 260px;
-    height: 260px;
+    border: solid grey;
+    width: 360px;
+    height: 360px;
     text-align: center;
-    /* font-size: 2.4em; */
+    font-size: 1.4em;
+    color: rgb(5, 145, 10);
+    
 }
 
 td {
-    border: solid grey 3px ;
+    border: solid rgb(52, 54, 54) 3px ;
     width: 40px;
     height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: darkgrey;
 }
 
-.hidden {
-    
+.flag-btn {
+    margin: 15px auto;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(181, 177, 177);
+    cursor: pointer;
+}
+
+.clicked-flag {
+    background-color: rgb(52, 54, 54);
+    cursor: pointer;
+}
+
+.modal {
+    background-color: rgb(58, 54, 54);
+    border: 5px solid rgb(189, 122, 6);
+    width: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 300px;
+    left: calc(50% - 175px);
+}
+
+.hide {
+    display: none;
+}
+
+.restart-btn {
+    margin: 15px auto;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(181, 177, 177);
+    cursor: pointer;
 }

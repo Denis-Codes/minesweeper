@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body onload="onInit()">
-    <h1>Minesweeper</h1>
-    <table class="board"></table>
-    <footer>Made By Denis Libin</footer>
+    <h1 title="Enjoy :]">Minesweeper</h1>
+    <table class="board"><tr><th>🙂</th></tr></table>
+    <button class="flag-btn" onclick="toggleFlag(this)">🚩</button>
+    
+    <div class="modal hide">
+        <h2 class="user-msg">You Won!</h2>
+        <button class="restart-btn" onclick="restart()">Restart</button>
+    </div>
+    
+    <footer>Made By Denis Libin © 2024</footer>
+    <script src="util.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
