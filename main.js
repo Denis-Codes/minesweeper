@@ -143,6 +143,7 @@ function expandShown(board, elCell, rowIdx, colIdx) {
             var currCell = board[i][j]
             if (!currCell.isMine && !currCell.isShown) {
                 currCell.isShown = true
+                elCell.innerText = currCell.minesAroundCount
                 gGame.shownCount++
                 
             }
@@ -157,6 +158,10 @@ function onCellClick(elCell, i, j) {
         gGame.shownCount++
         console.log('gGame.shownCount', gGame.shownCount)
         elCell.innerText = currCell.isMine ? MINE : currCell.minesAroundCount
+        if (currCell.minesAroundCount === 0) {
+            elCell.innerText = ''
+        }
+        elCell.style.backgroundColor = 'grey'
     }
     if (currCell.minesAroundCount === 0) {
         expandShown(gBoard, i, j)
