@@ -2,15 +2,17 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: larger;
     text-align: center;
-    background-color: rgb(207, 201, 201);
+    background-color: rgb(67, 104, 71);
     color: rgb(32, 31, 31);
     margin: 100px auto;
+    
 }
 
 footer {
     font-size: 1em;
     opacity: 30%;
-    font-weight: bold
+    font-weight: bold;
+    
 }
 
 
@@ -22,6 +24,7 @@ footer {
     text-align: center;
     font-size: 1.4em;
     color: rgb(5, 145, 10);
+     
     
 }
 
@@ -32,6 +35,9 @@ td {
     font-weight: bold;
     cursor: pointer;
     background-color: darkgrey;
+    /* box-shadow:  3px 5px 0px rgba(3,3,3,0.27); */
+    box-shadow: 0px 5px 15px 5px #000000
+    /* box-shadow:  0px 5px 12px 16px rgba(0,0,0,0.77) */
 }
 
 .flag-btn {
@@ -40,6 +46,7 @@ td {
     height: 30px;
     background-color: rgb(181, 177, 177);
     cursor: pointer;
+    
 }
 
 .clicked-flag {
@@ -55,6 +62,9 @@ td {
     position: absolute;
     top: 300px;
     left: calc(50% - 175px);
+    box-shadow: 0px 5px 15px 5px #000000;
+    color: rgb(189, 122, 6);
+    
 }
 
 .hide {
@@ -67,4 +77,13 @@ td {
     height: 30px;
     background-color: rgb(181, 177, 177);
     cursor: pointer;
+    font-weight: bold;
+}
+
+.clicked {
+    background-color: grey;
+}
+
+.smiley {
+    height: 60px;
 }

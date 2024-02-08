@@ -83,13 +83,48 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
-
 function createCell() {
     return {
         minesAroundCount: 0,
         isShown: false,
         isMine: (Math.random() > 0.2) ? false : true,
         isMarked: false
+    }
+}
+
+function expandShown(board, elCell, rowIdx, colIdx) {
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        var currCell = board[i].isMine
+        if (!currCell.isMine && !currCell.isShown) {
+            currCell.isShown = true
+            elCell.innerText = currCell.minesAroundCount
+            if (i < 0 || i >= board.length) continue
+            for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+                currCell = board[j].isMine
+                if (!currCell.isMine && !currCell.isShown) {
+                    currCell.isShown = true
+                    elCell.innerText = currCell.minesAroundCount
+                }
+            }
+        }
+    }
+}
+
+function onCellClick(elCell, i, j) {
+    var currCell = gBoard[i][j]
+    if (!currCell.isShown) {
+        currCell.isShown = true
+        gGame.shownCount++
+        if (currCell.isMine) {
+            elCell.innerText = MINE
+            elCell.style.backgroundColor = 'red'
+        } else {
+            if (currCell.minesAroundCount === 0) {
+                elCell.innerText = ''
+            // } else {
+            //     elCell.innerText = currCell.minesAroundCount
+            }
+            expandShown(gBoard, elCell, i, j)
+        }
     }
 }
