@@ -19,11 +19,11 @@ footer {
 .board {
     margin: auto;
     border: solid grey;
-    width: 360px;
-    height: 360px;
+    /* width: 360px; */
+    /* height: 360px; */
     text-align: center;
     font-size: 1.4em;
-    color: rgb(5, 145, 10);
+    color: rgb(200, 34, 8);
      
     
 }

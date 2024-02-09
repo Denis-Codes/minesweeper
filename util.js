@@ -1,81 +1,81 @@
-'use strict'
-// var gBoard = createBoard()  //create gBoard globally and add into onInit()
-// console.table(gBoard)
+// 'use strict'
+// // var gBoard = createBoard()  //create gBoard globally and add into onInit()
+// // console.table(gBoard)
 
-function createBoard() {
-    var board = []
-    for (var i = 0; i < 3; i++) {
-        board[i] = []
-        for (var j = 0; j < 3; j++) {
-            board[i][j] = (Math.random() > 0.7) ? BOMB : EMPTY
-        }
-    }
-    return board
-}
+// function createBoard() {
+//     var board = []
+//     for (var i = 0; i < 3; i++) {
+//         board[i] = []
+//         for (var j = 0; j < 3; j++) {
+//             board[i][j] = (Math.random() > 0.7) ? BOMB : EMPTY
+//         }
+//     }
+//     return board
+// }
 
-{/* <body onload="onInit()">
-    <table>
-        <tbody class="board"></tbody>
-    </table> */}
+// {/* <body onload="onInit()">
+//     <table>
+//         <tbody class="board"></tbody>
+//     </table> */}
 
-function renderBoard(board) {
-    var strHTML = ''
-    for (var i = 0; i < board.length; i++) {
-        strHTML += '<tr>'
-        for (var j = 0; j < board[0].length; j++) {
-            var currCell = board[i][j]
-            var cellClass = (board[i][j]) ? 'taken' : ''
-            var cellData = 'data-i="' + i + '" data-j="' + j + '"'
-            strHTML += `
-    <td class="cell ${cellClass}" ${cellData} onclick="onCellClick(${i}, ${j})">
-        ${currCell}
-    </td>
-    `
-        }
-        strHTML += '</tr>'
-    }
-    var elBoard = document.querySelector('.board')
-    elBoard.innerHTML = strHTML
-}
+// function renderBoard(board) {
+//     var strHTML = ''
+//     for (var i = 0; i < board.length; i++) {
+//         strHTML += '<tr>'
+//         for (var j = 0; j < board[0].length; j++) {
+//             var currCell = board[i][j]
+//             var cellClass = (board[i][j]) ? 'taken' : ''
+//             var cellData = 'data-i="' + i + '" data-j="' + j + '"'
+//             strHTML += `
+//     <td class="cell ${cellClass}" ${cellData} onclick="onCellClick(${i}, ${j})">
+//         ${currCell}
+//     </td>
+//     `
+//         }
+//         strHTML += '</tr>'
+//     }
+//     var elBoard = document.querySelector('.board')
+//     elBoard.innerHTML = strHTML
+// }
 
-function renderCell(location, value) {
-    // Select the elCell and set the value
-    const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
-    elCell.innerHTML = value
-}
+// function renderCell(location, value) {
+//     // Select the elCell and set the value
+//     const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
+//     elCell.innerHTML = value
+// }
 
-//Neighbors Loop
-function countMinesAround(board, rowIdx, colIdx) {
-    var minesCount = 0
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        if (i < 0 || i >= board.length) continue
-        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-            if (i === rowIdx && j === colIdx) continue
-            if (j < 0 || j >= board[0].length) continue
-            var currCell = board[i][j]
-            if (currCell === MINE) minesCount++
-        }
-    }
-    return minesCount
-}
+// //Neighbors Loop
+// function countMinesAround(board, rowIdx, colIdx) {
+//     var minesCount = 0
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         if (i < 0 || i >= board.length) continue
+//         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//             if (i === rowIdx && j === colIdx) continue
+//             if (j < 0 || j >= board[0].length) continue
+//             var currCell = board[i][j]
+//             if (currCell === MINE) minesCount++
+//         }
+//     }
+//     return minesCount
+// }
 
-function sumRow(mat, rowIdx) {
-    var sum = 0
-    for (var i = 0; i < mat.length; i++) {
-        var currNum = mat[rowIdx][i]
-        sum += currNum
-    }
-    return sum
-}
+// function sumRow(mat, rowIdx) {
+//     var sum = 0
+//     for (var i = 0; i < mat.length; i++) {
+//         var currNum = mat[rowIdx][i]
+//         sum += currNum
+//     }
+//     return sum
+// }
 
-function sumCol(mat, colIdx) {
-    var sum = 0
-    for (var i = 0; i < mat.length; i++) {
-        var currNum = mat[i][colIdx]
-        sum += currNum
-    }
-    return sum
-}
+// function sumCol(mat, colIdx) {
+//     var sum = 0
+//     for (var i = 0; i < mat.length; i++) {
+//         var currNum = mat[i][colIdx]
+//         sum += currNum
+//     }
+//     return sum
+// }
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -83,48 +83,49 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function createCell() {
-    return {
-        minesAroundCount: 0,
-        isShown: false,
-        isMine: (Math.random() > 0.2) ? false : true,
-        isMarked: false
-    }
-}
+// function createCell() {
+//     return {
+//         minesAroundCount: 0,
+//         isShown: false,
+//         isMine: (Math.random() > 0.2) ? false : true,
+//         isMarked: false
+//     }
+// }
 
-function expandShown(board, elCell, rowIdx, colIdx) {
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        var currCell = board[i].isMine
-        if (!currCell.isMine && !currCell.isShown) {
-            currCell.isShown = true
-            elCell.innerText = currCell.minesAroundCount
-            if (i < 0 || i >= board.length) continue
-            for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-                currCell = board[j].isMine
-                if (!currCell.isMine && !currCell.isShown) {
-                    currCell.isShown = true
-                    elCell.innerText = currCell.minesAroundCount
-                }
-            }
-        }
-    }
-}
+// function expandShown(board, elCell, rowIdx, colIdx) {
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         var currCell = board[i].isMine
+//         if (!currCell.isMine && !currCell.isShown) {
+//             currCell.isShown = true
+//             elCell.innerText = currCell.minesAroundCount
+//             if (i < 0 || i >= board.length) continue
+//             for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//                 currCell = board[j].isMine
+//                 if (!currCell.isMine && !currCell.isShown) {
+//                     currCell.isShown = true
+//                     elCell.innerText = currCell.minesAroundCount
+//                 }
+//             }
+//         }
+//     }
+// }
 
-function onCellClick(elCell, i, j) {
-    var currCell = gBoard[i][j]
-    if (!currCell.isShown) {
-        currCell.isShown = true
-        gGame.shownCount++
-        if (currCell.isMine) {
-            elCell.innerText = MINE
-            elCell.style.backgroundColor = 'red'
-        } else {
-            if (currCell.minesAroundCount === 0) {
-                elCell.innerText = ''
-            // } else {
-            //     elCell.innerText = currCell.minesAroundCount
-            }
-            expandShown(gBoard, elCell, i, j)
-        }
-    }
-}
+// function onCellClick(elCell, i, j) {
+//     var currCell = gBoard[i][j]
+//     if (!currCell.isShown) {
+//         currCell.isShown = true
+//         gGame.shownCount++
+//         if (currCell.isMine) {
+//             elCell.innerText = MINE
+//             elCell.style.backgroundColor = 'red'
+//         } else {
+//             if (currCell.minesAroundCount === 0) {
+//                 elCell.innerText = ''
+//             // } else {
+//             //     elCell.innerText = currCell.minesAroundCount
+//             }
+//             expandShown(gBoard, elCell, i, j)
+//         }
+//     }
+// }
+
