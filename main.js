@@ -7,11 +7,7 @@ var gBoard
 
 var gGame
 
-
-var gLevel = {
-    SIZE: 4,
-    MINES: 2
-}
+var gLevel
 
 var gToggleFlag = false
 
@@ -22,8 +18,13 @@ function onInit() {
         markedCount: 0,
         secsPassed: 0
     }
+    gLevel = {
+        SIZE: 4,
+        MINES: 2
+    }
     gBoard = createBoard()
     renderBoard(gBoard)
+    chooseDifficulty(document.querySelector('.easy-btn'))
     setMinesAtRandom(gBoard)
     setMinesNegsCount(gBoard)
 }
@@ -39,7 +40,36 @@ function createBoard() {
     //HARDCODED MINE POS
     // board[0][0].isMine = true
     // board[2][2].isMine = true
+
     return board
+}
+
+function chooseDifficulty(difficulty) {
+    // const difficulty = el.innerText
+    if (difficulty === 'Easy') {
+        gLevel = {
+            SIZE: 4,
+            MINES: 2
+        }
+    }
+    if (difficulty === 'Medium') {
+        gLevel = {
+            SIZE: 8,
+            MINES: 14
+        }
+    }
+    if (difficulty === 'Hard') {
+        gLevel = {
+            SIZE: 12,
+            MINES: 32
+        }
+    }
+    // restart()
+    gBoard = createBoard()
+    renderBoard(gBoard)
+    setMinesAtRandom(gBoard)
+    setMinesNegsCount(gBoard)
+    
 }
 
 function createCell() {
@@ -56,7 +86,6 @@ function renderBoard(board) {
     for (var i = 0; i < board.length; i++) {
         strHTML += '<tr>'
         for (var j = 0; j < board[0].length; j++) {
-
             var cellContent = ''
             var cellClass = ''
             var cellData = 'data-i="' + i + '" data-j="' + j + '"'
@@ -137,15 +166,12 @@ function restart() {
     onInit()
 }
 
-
-
 function onCellClick(elCell, i, j) {
     var currCell = gBoard[i][j]
     if (!currCell.isShown) {
         currCell.isShown = true
         elCell.classList.add('clicked')
         gGame.shownCount++
-
         if (currCell.isMine) {
             elCell.innerText = MINE
             elCell.classList.add('clicked')
@@ -171,18 +197,16 @@ function expandShown(board, elCell, rowIdx, colIdx) {
             if (!currCell.isShown) {
                 currCell.isShown = true
                 gGame.shownCount++
+                var elNeighborCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
                 if (currCell.isMine) {
-                    var elNeighborCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
                     elNeighborCell.innerText = MINE
                     elNeighborCell.style.backgroundColor = 'red'
                     gameOver()
                 } else if (currCell.minesAroundCount === 0) {
-                    var elNeighborCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
                     elNeighborCell.innerText = ''
                     elNeighborCell.classList.add('clicked')
                     expandShown(board, elNeighborCell, i, j)
                 } else {
-                    var elNeighborCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
                     elNeighborCell.innerText = currCell.minesAroundCount
                     elNeighborCell.classList.add('clicked')
                 }

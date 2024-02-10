@@ -1,18 +1,29 @@
+* {
+    font-weight: bold;
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     font-size: larger;
     text-align: center;
-    background-color: rgb(67, 104, 71);
+    /* background-color: rgb(67, 104, 71); */
     color: rgb(32, 31, 31);
-    margin: 100px auto;
-    
+    margin: auto;
+    background: #649173;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #DBD5A4, #649173);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #DBD5A4, #649173);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 footer {
     font-size: 1em;
     opacity: 30%;
     font-weight: bold;
-    
+
+
 }
 
 
@@ -23,21 +34,21 @@ footer {
     /* height: 360px; */
     text-align: center;
     font-size: 1.4em;
-    color: rgb(200, 34, 8);
-     
-    
+    color: rgb(36, 234, 6);
+    /* box-shadow: 0px 5px 15px 5px #000000 */
+
 }
 
 td {
-    border: solid rgb(52, 54, 54) 3px ;
+    border: solid rgb(52, 54, 54) 3px;
     width: 40px;
     height: 40px;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     background-color: darkgrey;
     /* box-shadow:  3px 5px 0px rgba(3,3,3,0.27); */
     box-shadow: 0px 5px 15px 5px #000000
-    /* box-shadow:  0px 5px 12px 16px rgba(0,0,0,0.77) */
+        /* box-shadow:  0px 5px 12px 16px rgba(0,0,0,0.77) */
 }
 
 .flag-btn {
@@ -46,7 +57,7 @@ td {
     height: 30px;
     background-color: rgb(181, 177, 177);
     cursor: pointer;
-    
+    box-shadow: 0px 5px 15px 5px #000000
 }
 
 .clicked-flag {
@@ -56,15 +67,15 @@ td {
 
 .modal {
     background-color: rgb(58, 54, 54);
-    border: 5px solid rgb(189, 122, 6);
+    border: 5px solid rgb(152, 150, 147);
     width: 300px;
     padding: 20px;
     position: absolute;
     top: 300px;
     left: calc(50% - 175px);
     box-shadow: 0px 5px 15px 5px #000000;
-    color: rgb(189, 122, 6);
-    
+    color: rgb(135, 133, 129);
+
 }
 
 .hide {
@@ -86,4 +97,14 @@ td {
 
 .smiley {
     height: 60px;
+}
+
+.dif-btn {
+    background-color: rgb(52, 54, 54);
+    cursor: pointer;
+    margin: 10px auto;
+    padding: 10px;
+    box-shadow: 0px 5px 125px 5px #000000;
+    width: 85px;
+    border-radius: 30px;
 }

@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body onload="onInit()">
     <h1 title="Enjoy :]">Minesweeper</h1>
+    <div class="difficulty-btn-container">
+        <button class="easy-btn dif-btn " onclick="chooseDifficulty('Easy')">Easy</button>
+        <button class="medium-btn dif-btn" onclick="chooseDifficulty('Medium')">Medium</button>
+        <button class="hard-btn dif-btn" onclick="chooseDifficulty('Hard')">Hard</button>
+    </div>
     <!-- <div class="smiley">🙂</div> -->
     <table class="board"></table>
     <button class="flag-btn" onclick="toggleFlag(this)">🚩</button>
-    
+
     <div class="modal hide">
         <h2 class="user-msg">You Won!</h2>
         <button class="restart-btn" onclick="restart()">Restart</button>
     </div>
-    
+
     <footer>Made By Denis Libin © 2024</footer>
     <script src="util.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
